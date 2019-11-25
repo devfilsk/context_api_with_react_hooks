@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import AppContext from './Context';
+import Counter from './Counter';
 
 function App() {
+  const [ total, setTotal ] = useState(0);
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div> 
+      APP: {total}
+      <AppContext.Provider value={[total, setTotal]}>
+        <Counter />
+        <button type="button" onClick={() => setTotal(total+1)}>setTotal + 1</button>
+      </AppContext.Provider>
     </div>
   );
 }
